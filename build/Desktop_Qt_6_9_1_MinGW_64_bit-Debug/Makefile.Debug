@@ -776,7 +776,8 @@ debug/logindialog.o: ../../logindialog.cpp ../../logindialog.h \
 		D:/Qt/6.9.1/mingw_64/include/QtGui/QMouseEvent \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QMessageBox \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qmessagebox.h \
-		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qdialogbuttonbox.h
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+		D:/Qt/6.9.1/mingw_64/include/QtGui/QFontMetrics
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\logindialog.o ..\..\logindialog.cpp
 
 debug/main.o: ../../main.cpp ../../mainwindow.h \
@@ -985,7 +986,9 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qdialog.h \
 		D:/Qt/6.9.1/mingw_64/include/QtCore/QPoint \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QApplication \
-		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qapplication.h
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qapplication.h \
+		D:/Qt/6.9.1/mingw_64/include/QtGui/QScreen \
+		D:/Qt/6.9.1/mingw_64/include/QtGui/QGuiApplication
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\..\main.cpp
 
 debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \

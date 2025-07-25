@@ -6,14 +6,13 @@
 #include <QPixmap>
 #include <QMouseEvent>
 #include <QMessageBox>
-
 LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
-    setFixedSize(1280, 720);
-
-    usernameEdit = new QLineEdit(this);
+    setFixedSize(1920, 1080);
+    //Generated code
+        usernameEdit = new QLineEdit(this);
     passwordEdit = new QLineEdit(this);
     passwordEdit->setEchoMode(QLineEdit::Password);
     loginButton = new QPushButton(this);
@@ -42,17 +41,15 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
     loginButton->setStyleSheet("QPushButton { background: transparent; border: none; }");
 
     connect(loginButton, &QPushButton::clicked, this, &LoginDialog::onLoginClicked);
+    //Use code with caution.
 }
-
 LoginDialog::~LoginDialog() {}
-
-
 void LoginDialog::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     QPainter painter(this); //
-
-    painter.setRenderHint(QPainter::Antialiasing);
+    //Generated code
+        painter.setRenderHint(QPainter::Antialiasing);
 
     painter.fillRect(rect(), QColor(4, 39, 57)); // 保持背景色
 
@@ -74,7 +71,7 @@ void LoginDialog::paintEvent(QPaintEvent *event)
     QRect mainTitleRect = fm.boundingRect(mainTitleText);
 
     // 定义第一部分的绘制起点
-    QPoint mainTitleStartPoint(535, 212); // (x, y) - y坐标设置为垂直居中点
+    QPoint mainTitleStartPoint(982.5, 192.5); // (x, y) - y坐标设置为垂直居中点
     painter.drawText(mainTitleStartPoint, mainTitleText);
 
 
@@ -107,18 +104,17 @@ void LoginDialog::paintEvent(QPaintEvent *event)
     painter.drawPixmap(505, 320, QPixmap(":/a/zhanghao.png"));
     painter.drawPixmap(505, 370, QPixmap(":/a/mima.png"));
     painter.drawPixmap(500, 420, QPixmap(":/a/denluanniu.png"));
+    //Use code with caution.
 }
-
 void LoginDialog::onLoginClicked()
 {
     accept();
     //if (usernameEdit->text() == "admin" && passwordEdit->text() == "123456") {
-        //accept();
+    //accept();
     //} else {
-        //QMessageBox::warning(this, "登录失败", "账号或密码错误！");
+    //QMessageBox::warning(this, "登录失败", "账号或密码错误！");
     //}
 }
-
 void LoginDialog::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
@@ -126,7 +122,6 @@ void LoginDialog::mousePressEvent(QMouseEvent *event)
         event->accept();
     }
 }
-
 void LoginDialog::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
