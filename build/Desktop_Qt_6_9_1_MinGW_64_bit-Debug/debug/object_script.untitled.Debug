@@ -1,0 +1,10 @@
+debug/custominputwidget.o
+debug/framedloginpanel.o
+debug/logindialog.o
+debug/main.o
+debug/mainwindow.o
+debug/qrc_assets.o
+debug/moc_custominputwidget.o
+debug/moc_framedloginpanel.o
+debug/moc_logindialog.o
+debug/moc_mainwindow.o

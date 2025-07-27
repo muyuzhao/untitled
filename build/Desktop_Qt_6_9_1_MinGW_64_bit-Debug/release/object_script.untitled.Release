@@ -1,0 +1,10 @@
+release/custominputwidget.o
+release/framedloginpanel.o
+release/logindialog.o
+release/main.o
+release/mainwindow.o
+release/qrc_assets.o
+release/moc_custominputwidget.o
+release/moc_framedloginpanel.o
+release/moc_logindialog.o
+release/moc_mainwindow.o
