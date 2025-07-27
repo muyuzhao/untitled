@@ -4,10 +4,11 @@
 #include <QApplication>
 int main(int argc, char *argv[])
 {
+
     QApplication a(argc, argv);
-    //Generated code
-        LoginDialog loginDialog;
-    //loginDialog.showFullScreen();
+
+    LoginDialog loginDialog;
+    loginDialog.showFullScreen();
 
     // 如果登录成功
     if (loginDialog.exec() == QDialog::Accepted) {
@@ -19,5 +20,5 @@ int main(int argc, char *argv[])
         // 否则程序直接退出
         return 0;
     }
-    //Use code with caution.
+
 }

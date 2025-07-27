@@ -1,11 +1,8 @@
 <RCC>
     <qresource prefix="/images"/>
     <qresource prefix="/">
-        <file>a/zhanghao.png</file>
-        <file>a/yonghudenlu.png</file>
-        <file>a/mima.png</file>
-        <file>a/denluanniu.png</file>
-        <file>a/1.png</file>
         <file>a/emblem.png</file>
+        <file>a/ren.png</file>
+        <file>a/suo.png</file>
     </qresource>
 </RCC>

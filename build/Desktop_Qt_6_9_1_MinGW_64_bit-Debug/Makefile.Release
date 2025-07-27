@@ -110,12 +110,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_assets.cpp
 release/qrc_assets.cpp: ../../assets.qrc \
 		D:/Qt/6.9.1/mingw_64/bin/rcc.exe \
-		../../a/mima.png \
-		../../a/1.png \
-		../../a/denluanniu.png \
-		../../a/zhanghao.png \
-		../../a/yonghudenlu.png \
-		../../a/emblem.png
+		../../a/ren.png \
+		../../a/emblem.png \
+		../../a/suo.png
 	D:\Qt\6.9.1\mingw_64\bin\rcc.exe -name assets --no-zstd ..\..\assets.qrc -o release\qrc_assets.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -759,25 +756,29 @@ release/logindialog.o: ../../logindialog.cpp ../../logindialog.h \
 		D:/Qt/6.9.1/mingw_64/include/QtCore/qlocale.h \
 		D:/Qt/6.9.1/mingw_64/include/QtGui/qguiapplication_platform.h \
 		D:/Qt/6.9.1/mingw_64/include/QtCore/QPoint \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QVBoxLayout \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qboxlayout.h \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qlayout.h \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qgridlayout.h \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QHBoxLayout \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QGridLayout \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QSpacerItem \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QLabel \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qlabel.h \
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qframe.h \
+		D:/Qt/6.9.1/mingw_64/include/QtGui/qpicture.h \
+		D:/Qt/6.9.1/mingw_64/include/QtGui/qtextdocument.h \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QLineEdit \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qlineedit.h \
-		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qframe.h \
 		D:/Qt/6.9.1/mingw_64/include/QtGui/qtextcursor.h \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/qtextdocument.h \
 		D:/Qt/6.9.1/mingw_64/include/QtGui/qtextformat.h \
 		D:/Qt/6.9.1/mingw_64/include/QtGui/qpen.h \
 		D:/Qt/6.9.1/mingw_64/include/QtGui/qtextoption.h \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QPushButton \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qpushbutton.h \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qabstractbutton.h \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/QPainter \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/qpainter.h \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/QPixmap \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/QMouseEvent \
-		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QMessageBox \
-		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qmessagebox.h \
-		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/QFontMetrics
+		D:/Qt/6.9.1/mingw_64/include/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\logindialog.o ..\..\logindialog.cpp
 
 release/main.o: ../../main.cpp ../../mainwindow.h \
@@ -986,9 +987,7 @@ release/main.o: ../../main.cpp ../../mainwindow.h \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qdialog.h \
 		D:/Qt/6.9.1/mingw_64/include/QtCore/QPoint \
 		D:/Qt/6.9.1/mingw_64/include/QtWidgets/QApplication \
-		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qapplication.h \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/QScreen \
-		D:/Qt/6.9.1/mingw_64/include/QtGui/QGuiApplication
+		D:/Qt/6.9.1/mingw_64/include/QtWidgets/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\..\main.cpp
 
 release/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
