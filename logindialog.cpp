@@ -79,140 +79,99 @@ QWidget* createInputWidget(const QString& iconPath, const QString& text, QLineEd
 
 
 /*
- * 构造函数
- * 创建所有子控件、设置它们的属性、搭建布局，完成窗口的初始化。
+ * 构造函数 (最终毕业版 - 结合了你所有正确思路的完美实现)
  */
 LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
 {
     // --- 窗口级别的基本设置 ---
-    setWindowFlags(Qt::FramelessWindowHint); // 设置窗口为无边框模式
-    // 用样式表设置整个对话框的背景色。这比paintEvent性能更好。
+    setWindowFlags(Qt::FramelessWindowHint);
     this->setStyleSheet("QDialog { background-color: rgb(4, 39, 57); }");
 
-    //this->resize(1920, 1080);
-
-    // ======================== 阶段 1: 创建所有独立的控件 ========================
-
-    // --- 创建顶部标题部分的所有 QLabel ---
+    // ======================== 阶段 1: 创建所有独立的控件 (无需改动) ========================
     QLabel* emblemLabel = new QLabel();
-    emblemLabel->setPixmap(QPixmap(":/a/emblem.png")); //国徽图片
-
+    emblemLabel->setPixmap(QPixmap(":/a/emblem.png"));
     QLabel* titleLabel = new QLabel("刑侦现场还原系统");
     titleLabel->setStyleSheet("color: white; font-size: 28px; font-weight: bold; font-family: 'Microsoft YaHei';");
-
     QLabel* versionLabel = new QLabel("V2.0");
     versionLabel->setStyleSheet("color: white; font-size: 12px; font-family: 'Microsoft YaHei';");
-    versionLabel->setAlignment(Qt::AlignBottom); // 垂直方向底部对齐
-
+    versionLabel->setAlignment(Qt::AlignBottom);
     QLabel* subtitleLabel = new QLabel("CRIME SCENE RECONSTRUCTION SYSTEM");
     subtitleLabel->setStyleSheet("color: #5BCCF2; font-size: 10px; font-family: 'Arial';");
-
-    // --- 创建登录面板部分的控件 ---
-    QLabel* loginTitleLabel = new QLabel("用户登录");
-    loginTitleLabel->setStyleSheet("color: white; font-size: 18px; font-weight: bold;");
-
-    // 【调用辅助函数】创建账号和密码输入框，同时初始化了成员变量 usernameEdit 和 passwordEdit
+    //QLabel* loginTitleLabel = new QLabel("用户登录");
+    //loginTitleLabel->setStyleSheet("color: white; font-size: 18px; font-weight: bold;");
     QWidget* accountWidget = createInputWidget(":/a/ren.png", "账号", usernameEdit);
     QWidget* passwordWidget = createInputWidget(":/a/suo.png", "密码", passwordEdit);
-    passwordEdit->setEchoMode(QLineEdit::Password); // 将密码框设置为密码模式 (显示为小黑点)
-
-    // 创建登录按钮
+    passwordEdit->setEchoMode(QLineEdit::Password);
     loginButton = new QPushButton("登录");
     loginButton->setFixedSize(336, 44);
-    // 设置按钮的默认样式和鼠标悬浮(:hover)时的样式
     loginButton->setStyleSheet(
-        "QPushButton {"
-        "    background-color: #1C7F82;"
-        "    border-radius: 8px;"
-        "    color: white;"
-        "    font-size: 16px;"
-        "    font-weight: bold;"
-        "}"
-        "QPushButton:hover {" //鼠标三态 普通 悬停 点击 （禁用）
-        "    background-color: #2CB0B4;" // 鼠标悬浮时变亮
-        "}"
+        "QPushButton { background-color: #1C7F82; border-radius: 8px; color: white; font-size: 16px; font-weight: bold; }"
+        "QPushButton:hover { background-color: #2CB0B4; }"
         );
 
-    // ======================== 阶段 2: 搭建局部布局 (像把积木拼成小模块) ========================
-
-    // --- 搭建“标题部分”的布局 ---
-    // 这是一个【水平布局】，从左到右依次是：弹簧-> 国徽 -> (一个垂直布局) -> 弹簧
+    // ======================== 阶段 2: 搭建局部布局 (无需改动) ========================
     QHBoxLayout* titleLayout = new QHBoxLayout();
-    titleLayout->addStretch();
     titleLayout->setSpacing(15);
+    titleLayout->addStretch();
     titleLayout->addWidget(emblemLabel);
 
-    // 这是一个【垂直布局】，用来装主标题行和副标题行
     QVBoxLayout* titleTextLayout = new QVBoxLayout();
     titleTextLayout->setSpacing(2);
-    // 这是一个【水平布局】，用来装 "刑侦现场还原系统" 和 "V2.0"
-    QHBoxLayout* mainTitleLayout = new QHBoxLayout();
-    mainTitleLayout->setSpacing(8);
 
-    //mainTitleLayout->addStretch();
-    mainTitleLayout->addWidget(titleLabel);
-    mainTitleLayout->addWidget(versionLabel);
-    mainTitleLayout->addStretch(); // 添加一个弹簧，会把前面的控件推到最左边
+        QHBoxLayout* mainTitleLayout = new QHBoxLayout();
+        mainTitleLayout->setSpacing(8);
+        mainTitleLayout->addWidget(titleLabel);
+        mainTitleLayout->addWidget(versionLabel);
+        mainTitleLayout->addStretch();
 
-    titleTextLayout->addLayout(mainTitleLayout); // 把主标题行布局加入
-    titleTextLayout->addWidget(subtitleLabel);   // 把副标题加入
+    titleTextLayout->addLayout(mainTitleLayout);
+    titleTextLayout->addWidget(subtitleLabel);
 
-    titleLayout->addLayout(titleTextLayout); // 把整个文字区布局加入
-    titleLayout->addStretch(); // 添加一个弹簧，确保整个标题区靠左
+    titleLayout->addLayout(titleTextLayout);
+    titleLayout->addStretch();
 
-    // --- 搭建“登录面板”的核心布局 ---
-    // 这是一个【垂直布局】，从上到下依次是：登录标题 -> 账号框 -> 密码框 -> 登录按钮
-    QVBoxLayout* loginVLayout = new QVBoxLayout();
-    loginVLayout->setSpacing(20); // 设置它们之间的垂直间距
-    loginVLayout->setAlignment(Qt::AlignCenter); // 让它内部的所有控件都尝试在水平方向居中
-    loginVLayout->addWidget(loginTitleLabel, 0, Qt::AlignCenter); // 强制这个label居中
+    QLabel* loginFrame = new QLabel();
+    loginFrame->setPixmap(QPixmap(":/a/yonghudenglu.png"));
+    loginFrame->setFixedSize(484, 340);
+    QVBoxLayout* loginVLayout = new QVBoxLayout(loginFrame);
+    loginVLayout->setContentsMargins(74, 75, 74, 55);
+    loginVLayout->setSpacing(20);
+    loginVLayout->setAlignment(Qt::AlignCenter);
+    //loginVLayout->addWidget(loginTitleLabel, 0, Qt::AlignCenter);
     loginVLayout->addWidget(accountWidget);
     loginVLayout->addWidget(passwordWidget);
     loginVLayout->addWidget(loginButton);
 
+    // ======================== 阶段 3: 搭建主布局 (最终的、完美的四向弹簧模型) ========================
 
-    // ======================== 阶段 3: 搭建主布局 (把所有小模块拼成最终模型) ========================
-
-    // --- 使用“布局嵌套”和“弹簧”来实现完美的居中效果 ---
-
-    // 创建一个“中央面板” QWidget，它像一个透明的画板，用来承载我们所有的内容。
+    // 【1. 创建中央画板】它是一个透明的QWidget，是所有内容的最终载体。
     QWidget* centerPanel = new QWidget();
-    // 在这个画板上应用一个垂直布局。
-    QVBoxLayout* mainVLayout = new QVBoxLayout(centerPanel);
 
-    mainVLayout->setAlignment(Qt::AlignCenter);
+    // 【2. 在画板上垂直排列内容】
+    QVBoxLayout* mainVLayout = new QVBoxLayout(centerPanel); // 这个布局属于 centerPanel！
+    mainVLayout->setAlignment(Qt::AlignCenter); // 让模块本身在画板上居中
+    mainVLayout->addStretch(2);         // 上弹簧
+    mainVLayout->addLayout(titleLayout);  // 标题模块
+    mainVLayout->addSpacing(30);
+    mainVLayout->addWidget(loginFrame); // 带画框的登录模块
+    mainVLayout->addStretch(3);         // 下弹簧
 
-    // 在内容区的【上方】添加一个弹簧，伸展因子为2 (数字越大，占的空间比例越多)
-    mainVLayout->addStretch(2);
-    mainVLayout->addLayout(titleLayout); // 添加我们搭好的标题模块
-    mainVLayout->addSpacing(60);         // 添加一个30像素的固定间距
-    mainVLayout->addLayout(loginVLayout);  // 添加我们搭好的登录模块
-    // 在内容区的【下方】添加一个弹簧，伸展因子为3，这样内容区会稍微偏上，符合视觉习惯
-    mainVLayout->addStretch(3);
+    // 【3. 把画板放到房子里，并用左右弹簧挤压】
+    QHBoxLayout* finalLayout = new QHBoxLayout(this); // 这个最终布局属于整个对话框(this)！
+    finalLayout->addStretch();           // 左弹簧
+    finalLayout->addWidget(centerPanel); // 把我们完美的中央画板放进去
+    finalLayout->addStretch();           // 右弹簧
 
-    // 【最终组合】
-    // 在整个对话框(this)上，应用一个水平布局。
-    QHBoxLayout* finalLayout = new QHBoxLayout(this);
-    finalLayout->addStretch(); // 在【左边】添加一个弹簧
-    finalLayout->addWidget(centerPanel); // 把我们精心制作的“中央面板”放进去
-    finalLayout->addStretch(); // 在【右边】添加一个弹簧
-    // 左右两个弹簧会平分水平方向的空白，从而把 `centerPanel` 挤到水平居中。
-    // 而 `centerPanel` 内部的上下两个弹簧，会把它里面的内容挤到垂直居中（略微偏上）。
-
-
-    // ======================== 阶段 4: 连接信号与槽 (让控件响应用户操作) ========================
-    // 将登录按钮的 clicked() 信号，连接到我们自己的 onLoginClicked() 槽函数上。
-    // 意思就是：“当按钮被点击时，请执行 onLoginClicked() 函数里的代码”。
+    // ======================== 阶段 4: 连接信号与槽 (无需改动) ========================
     connect(loginButton, &QPushButton::clicked, this, &LoginDialog::onLoginClicked);
 }
-
+// ======================== 阶段 5: 实现头文件中声明的其余函数 ========================
 
 /*
  * LoginDialog 的【析构函数】(Destructor)
  * 当 LoginDialog 对象被销毁时 (例如对话框关闭后)，这个函数会被调用。
- * 我们在这里通常释放手动 new 出来的、且没有父对象的内存。
- * 但在这个例子中，所有 new 出来的 QWidget 和 QLayout 都有了父对象(this 或其他控件)，
- * Qt 的父子机制会自动管理它们的内存，所以这个函数可以是空的。
+ * 在这个例子中，所有 new 出来的 QWidget 和 QLayout 都有了父对象，
+ * Qt 的父子机制会自动管理它们的内存，所以这个函数可以是空的，但【必须存在】！
  */
 LoginDialog::~LoginDialog() {}
 
@@ -237,7 +196,7 @@ void LoginDialog::mousePressEvent(QMouseEvent *event)
     // 如果是鼠标左键按下了
     if (event->button() == Qt::LeftButton) {
         // 记录下当前鼠标相对于屏幕的全局坐标 和 窗口左上角的坐标 的差值。
-        // 这个差值就是鼠标在窗口内部的相对位置。
+        // 这个差值就是鼠标在窗口内部的相对位置，用于拖动计算。
         dragPosition = event->globalPosition().toPoint() - frameGeometry().topLeft();
         event->accept(); // 表示这个事件我们已经处理了，不要再往上传递。
     }
